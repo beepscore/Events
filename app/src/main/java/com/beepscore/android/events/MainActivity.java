@@ -1,13 +1,13 @@
 package com.beepscore.android.events;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.widget.SimpleCursorAdapter;
 
 import static android.provider.BaseColumns._ID;
 import static com.beepscore.android.events.Constants.TABLE_NAME;
@@ -15,11 +15,12 @@ import static com.beepscore.android.events.Constants.TIME;
 import static com.beepscore.android.events.Constants.TITLE;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends ListActivity {
 
     private EventsData events;
     private static String[] FROM = { _ID, TIME, TITLE, };
     private static String ORDER_BY = TIME + " DESC";
+    private static int[] TO = { R.id.rowid, R.id.time, R.id.title, };
 
 
     @Override
@@ -81,21 +82,10 @@ public class MainActivity extends Activity {
     }
 
     private void showEvents(Cursor cursor) {
-        // Stuff them all into a big string
-        StringBuilder builder = new StringBuilder("Saved events:\n");
-
-        while (cursor.moveToNext()) {
-            // Could use getColumnIndexOrThrow() to get indexes
-            long id = cursor.getLong(0);
-            long time = cursor.getLong(1);
-            String title = cursor.getString(2);
-
-            builder.append(id).append(": ");
-            builder.append(time).append(": ");
-            builder.append(title).append("\n");
-        }
-        // Display on the screen
-        TextView textView = (TextView) findViewById(R.id.text);
-        textView.setText(builder);
+        // Set up data binding
+        // TODO: replace deprecated SimpleCursorAdapter
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
+                R.layout.item, cursor, FROM, TO);
+        setListAdapter(adapter);
     }
 }
