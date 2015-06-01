@@ -26,9 +26,10 @@ public class EventsData extends SQLiteOpenHelper {
     // if database doesn't exist, SQLiteOpenHelper calls onCreate
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TABLE_NAME + " (" + _ID
-                + " INTEGER PRIMARY KEY AUTOINCREMENT, " + TIME
-                + " INTEGER" + TITLE + " TEXT NOT NULL);");
+        db.execSQL("CREATE TABLE " + TABLE_NAME + " ("
+                + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + TIME + " INTEGER, "
+                + TITLE + " TEXT NOT NULL);");
     }
 
     /**
