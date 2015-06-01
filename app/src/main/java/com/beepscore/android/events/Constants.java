@@ -4,6 +4,9 @@ import android.provider.BaseColumns;
 
 /**
  * Created by stevebaker on 5/31/15.
+ * If other classes use import static,
+ * I think Constants does have to be an interface
+ * See Barnette Ch 13 p 188
  */
 public interface Constants extends BaseColumns {
 

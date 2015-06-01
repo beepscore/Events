@@ -1,8 +1,6 @@
 package com.beepscore.android.events;
 
-// Use static import to get Constants
-// I think this way Constants does not need to be an interface
-// See Barnette Ch 13 p 188
+// Use import static to get constants
 import static android.provider.BaseColumns._ID;
 import static com.beepscore.android.events.Constants.TABLE_NAME;
 import static com.beepscore.android.events.Constants.TIME;
