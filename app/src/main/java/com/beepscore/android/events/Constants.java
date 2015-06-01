@@ -1,5 +1,6 @@
 package com.beepscore.android.events;
 
+import android.net.Uri;
 import android.provider.BaseColumns;
 
 /**
@@ -12,7 +13,10 @@ public interface Constants extends BaseColumns {
 
     // superclass BaseColumns declares primary key _id
 
+    public static final String AUTHORITY = "com.beepscore.events";
     public static final String TABLE_NAME = "events";
+    public static final Uri CONTENT_URI = Uri.parse("content://"
+            + AUTHORITY + "/" + TABLE_NAME);
 
     // Columns in the Events database
     // time stamp
